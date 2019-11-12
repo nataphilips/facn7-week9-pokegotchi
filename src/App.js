@@ -1,6 +1,7 @@
 import React from "react";
 import { getPokemon } from "./utils";
-import logo from "./logo.svg";
+import pokeball from "./pokeball.png";
+import speech from "./speech.png";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPoo } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +10,9 @@ function App({ name }) {
   const [data, setData] = React.useState(null);
   const [pokename, setPokeName] = React.useState("");
   const [playCounter, setPlayCounter] = React.useState(0);
+  const [foodCounter, setFoodCounter] = React.useState(4);
   const [pooped, setPooped] = React.useState(false);
+  const [hungry, setHungry] = React.useState(false);
   const [msg, setMsg] = React.useState("");
 
   // React.useEffect(() => {
@@ -24,9 +27,14 @@ function App({ name }) {
 
   const handlePlay = () => {
     setPlayCounter(playCounter + 1);
+    setFoodCounter(foodCounter - 1);
     if (playCounter > 3) {
       setPlayCounter(0);
       setPooped(true);
+      setMsg("Whoops!");
+    } else if (foodCounter === 1) {
+      setHungry(true);
+      setMsg("Feed me, please!");
     }
   };
   const handleSearch = event => {
@@ -35,11 +43,26 @@ function App({ name }) {
       setData(data);
     });
   };
+  const handlePoops = () => {
+    setPooped(false);
+    setMsg("Thanks!");
+    setTimeout(() => {
+      setMsg("");
+    }, 2000);
+  };
+  const handleFood = () => {
+    setHungry(false);
+    setFoodCounter(4);
+    setMsg("Tasty!");
+    setTimeout(() => {
+      setMsg("");
+    }, 2000);
+  };
 
   return (
     <div className="App">
       <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={pokeball} className="App-logo" alt="logo" />
       </div>
       <form>
         <label htmlFor="pokeSearch">Pick a pokemon</label>
@@ -49,17 +72,25 @@ function App({ name }) {
           value={pokename}
           onChange={event => setPokeName(event.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button id="callPoke" onClick={handleSearch}>
+          <img id="callpoke" src={pokeball} />
+        </button>
       </form>
       {data && data.id && (
-        <div>
-          <h2>{data.name}</h2>
-          <div id="message">Play with me</div>
+        <div id="gameContainer">
+          <h2 id="pokeName">{data.name}</h2>
           <div className="pokeHouse">
+            <div id="message">
+              <div id="speech">{msg ? msg : "Play with me!"}</div>
+            </div>
             <div id="pokemonZone">
               <img
                 id="pokemon"
-                src={data.sprites.front_default}
+                src={
+                  !pooped
+                    ? data.sprites.front_default
+                    : data.sprites.back_default
+                }
                 alt={`${data.name} default sprite`}
               />
               {pooped && (
@@ -70,12 +101,18 @@ function App({ name }) {
             </div>
           </div>
           <div>
-            <button onClick={handlePlay} disabled={pooped}>
+            <button onClick={handlePlay} disabled={pooped || hungry}>
               Play
             </button>
-            <button disabled={!pooped}>Clean</button>
+            <button onClick={handleFood} disabled={!hungry}>
+              Feed
+            </button>
+            <button onClick={handlePoops} disabled={!pooped}>
+              Clean
+            </button>
           </div>
-          <div>{playCounter}</div>
+          <div>Play: {playCounter}</div>
+          <div>Food :{foodCounter}</div>
         </div>
       )}
     </div>

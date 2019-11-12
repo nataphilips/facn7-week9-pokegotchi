@@ -1,5 +1,4 @@
 function getPokemon(name) {
-  console.log(1, name);
   return window
     .fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     .then(res => {

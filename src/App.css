@@ -1,21 +1,93 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2e5266;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  font-family: "Press Start 2P", cursive;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+form label {
+  color: #d3d0cb;
+}
+button {
+  font-family: "Press Start 2P", cursive;
+  height: 40px;
+  width: 150px;
+  margin: 10px;
+  background-color: #d3d0cb;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  box-shadow: 0px 0px 10px 3px grey;
+}
+
+#pokeName {
+  color: white;
+}
+
+#callPoke {
+  height: 38px;
+  width: 70px;
+  margin: 10px;
+}
+
+#pokeSearch {
+  height: 30px;
+  width: 200px;
+  margin: 10px;
+  font-size: 12px;
+  margin-left: 10px;
+  text-indent: 10px;
+  font-family: "Press Start 2P", cursive;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 150px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  background-color: #d3d0cb;
+  height: 200px;
   color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-intro {
   font-size: large;
+}
+
+#message {
+  height: 85px;
+  width: 300px;
+  font-size: 18px;
+  background-image: url("./speech.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 220px;
+  margin-top: 50px;
+}
+
+#speech {
+  font-size: 11px;
+  margin-bottom: 20px;
 }
 
 #pokemon {
@@ -23,8 +95,25 @@
 }
 
 #poop {
-  font-size: 36px;
-  color: brown;
+  font-size: 50px;
+  color: #523f38;
+  margin-bottom: 40px;
+}
+
+#callpoke {
+  width: 30px;
+}
+
+.pokeHouse {
+  width: 500px;
+  height: 400px;
+  background-image: url("http://www.clker.com/cliparts/O/6/x/A/Z/O/two-trees-green-field-sun.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {
