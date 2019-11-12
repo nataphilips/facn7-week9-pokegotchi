@@ -2,10 +2,13 @@ import React from "react";
 import { getPokemon } from "./utils";
 import logo from "./logo.svg";
 import "./App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPoo } from "@fortawesome/free-solid-svg-icons";
 
 function App({ name }) {
   const [data, setData] = React.useState(null);
   const [pokename, setPokeName] = React.useState("");
+
   // React.useEffect(() => {
   // name = pokename;
   // getPokemon(pokename).then(data => {
@@ -52,10 +55,9 @@ function App({ name }) {
                 alt={`${data.name} default sprite`}
               />
               <div id="poopContainer">
-                <img id="poop" src="" alt="poop" />
+                <FontAwesomeIcon icon={faPoo} id="poop" />
               </div>
             </div>
-            pikachu
           </div>
         </div>
       )}
