@@ -8,6 +8,9 @@ import { faPoo } from "@fortawesome/free-solid-svg-icons";
 function App({ name }) {
   const [data, setData] = React.useState(null);
   const [pokename, setPokeName] = React.useState("");
+  const [playCounter, setPlayCounter] = React.useState(0);
+  const [pooped, setPooped] = React.useState(false);
+  const [msg, setMsg] = React.useState("");
 
   // React.useEffect(() => {
   // name = pokename;
@@ -18,6 +21,21 @@ function App({ name }) {
   // }, [pokename]);
   // if (!data) return <div>Loading...</div>;
   // console.log(data);
+
+  const handlePlay = () => {
+    setPlayCounter(playCounter + 1);
+    if (playCounter > 3) {
+      setPlayCounter(0);
+      setPooped(true);
+    }
+  };
+  const handleSearch = event => {
+    event.preventDefault();
+    getPokemon(pokename).then(data => {
+      setData(data);
+    });
+  };
+
   return (
     <div className="App">
       <div className="App-header">
@@ -31,17 +49,7 @@ function App({ name }) {
           value={pokename}
           onChange={event => setPokeName(event.target.value)}
         />
-        <button
-          onClick={event => {
-            event.preventDefault();
-            getPokemon(pokename).then(data => {
-              setData(data);
-              console.log(data);
-            });
-          }}
-        >
-          Search
-        </button>
+        <button onClick={handleSearch}>Search</button>
       </form>
       {data && data.id && (
         <div>
@@ -54,11 +62,20 @@ function App({ name }) {
                 src={data.sprites.front_default}
                 alt={`${data.name} default sprite`}
               />
-              <div id="poopContainer">
-                <FontAwesomeIcon icon={faPoo} id="poop" />
-              </div>
+              {pooped && (
+                <div id="poopContainer">
+                  <FontAwesomeIcon icon={faPoo} id="poop" />
+                </div>
+              )}
             </div>
           </div>
+          <div>
+            <button onClick={handlePlay} disabled={pooped}>
+              Play
+            </button>
+            <button disabled={!pooped}>Clean</button>
+          </div>
+          <div>{playCounter}</div>
         </div>
       )}
     </div>
