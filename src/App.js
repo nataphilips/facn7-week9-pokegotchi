@@ -13,17 +13,8 @@ function App({ name }) {
   const [foodCounter, setFoodCounter] = React.useState(4);
   const [pooped, setPooped] = React.useState(false);
   const [hungry, setHungry] = React.useState(false);
+  const [cleaning, setCleaning] = React.useState(false);
   const [msg, setMsg] = React.useState("");
-
-  // React.useEffect(() => {
-  // name = pokename;
-  // getPokemon(pokename).then(data => {
-  //   setData(data);
-  //   console.log(data);
-  // });
-  // }, [pokename]);
-  // if (!data) return <div>Loading...</div>;
-  // console.log(data);
 
   const handlePlay = () => {
     setPlayCounter(playCounter + 1);
@@ -46,6 +37,10 @@ function App({ name }) {
   const handlePoops = () => {
     setPooped(false);
     setMsg("Thanks!");
+    setCleaning(true);
+    setTimeout(() => {
+      setCleaning(false);
+    }, 1000);
     setTimeout(() => {
       setMsg("");
     }, 2000);
@@ -80,6 +75,7 @@ function App({ name }) {
         <div id="gameContainer">
           <h2 id="pokeName">{data.name}</h2>
           <div className="pokeHouse">
+            {cleaning && <div id="bubbles"></div>}
             <div id="message">
               <div id="speech">{msg ? msg : "Play with me!"}</div>
             </div>
@@ -93,11 +89,17 @@ function App({ name }) {
                 }
                 alt={`${data.name} default sprite`}
               />
-              {pooped && (
-                <div id="poopContainer">
-                  <FontAwesomeIcon icon={faPoo} id="poop" />
-                </div>
-              )}
+
+              <div
+                id="poopContainer"
+                style={{
+                  transform: pooped && "translateY(30%)",
+                  transition: pooped && "all 1s ease-in",
+                  visibility: !pooped ? "hidden" : "visible"
+                }}
+              >
+                <FontAwesomeIcon icon={faPoo} id="poop" />
+              </div>
             </div>
           </div>
           <div>
