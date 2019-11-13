@@ -15,7 +15,9 @@ function App({ name }) {
   const [playCounter, setPlayCounter] = React.useState(
     JSON.parse(localStorage.getItem("counter")) || 0
   );
-  const [foodCounter, setFoodCounter] = React.useState(4);
+  const [foodCounter, setFoodCounter] = React.useState(
+    JSON.parse(localStorage.getItem("foodcounter")) || 4
+  );
   const [pooped, setPooped] = React.useState(false);
   const [hungry, setHungry] = React.useState(false);
   const [cleaning, setCleaning] = React.useState(false);
@@ -27,10 +29,11 @@ function App({ name }) {
 
   // console.log(lives);
   React.useEffect(() => {
-    // localStorage.setItem("pokename", pokename);
+    localStorage.setItem("pokename", pokename);
     localStorage.setItem("data", JSON.stringify(data));
     localStorage.setItem("counter", playCounter);
-  }, [data, playCounter]);
+    localStorage.setItem("foodcounter", foodCounter);
+  }, [data, playCounter, pokename, foodCounter]);
 
   const handlePlay = () => {
     setPlayCounter(playCounter + 1);
@@ -63,6 +66,11 @@ function App({ name }) {
     setTimeout(() => {
       setMsg("");
     }, 2000);
+    if (foodCounter === 0) {
+      console.log("I'm hungry too!");
+      setHungry(true);
+      console.log(hungry);
+    }
   };
   const handleFood = () => {
     setHungry(false);

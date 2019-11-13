@@ -4,10 +4,10 @@ import App from "./App";
 import { fireEvent, getAllByTestId } from "@testing-library/dom";
 import { render, cleanup, waitForElement } from "@testing-library/react";
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-});
+// it("renders without crashing", () => {
+//   const div = document.createElement("div");
+//   ReactDOM.render(<App />, div);
+// });
 
 afterEach(cleanup);
 

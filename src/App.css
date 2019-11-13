@@ -199,11 +199,23 @@ button:hover {
   }
 }
 
+.true {
+  animation: bounce infinite 20s linear;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes bounce {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 200px, 0);
   }
 }
