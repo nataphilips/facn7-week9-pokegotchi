@@ -127,6 +127,16 @@ button:hover {
   width: 30px;
 }
 
+.meters {
+  color: white;
+  margin: 15px;
+  font-size: 18px;
+}
+
+.stats {
+  font-size: 22px;
+}
+
 .pokeHouse {
   width: 500px;
   height: 400px;

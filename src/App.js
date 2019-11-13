@@ -20,6 +20,8 @@ function App({ name }) {
   const [hungry, setHungry] = React.useState(false);
   const [cleaning, setCleaning] = React.useState(false);
   const [msg, setMsg] = React.useState("");
+  const funmeter = ["😴", "💛", "💛💛", "💛💛💛", "💛💛💛💛"];
+  const food = ["HUNGRY", "🍎", "🍎🍎", "🍎🍎🍎", "🍎🍎🍎🍎"];
 
   // const [lives, setLives] = React.useState(["♥", "♥♥", "♥♥♥", "♥♥♥♥", "♥♥♥♥♥"]);
 
@@ -121,6 +123,12 @@ function App({ name }) {
               </div>
             </div>
           </div>
+          <div class="meters">
+            <span class="stats">Fun: {funmeter[playCounter]}</span>
+          </div>
+          <div class="meters">
+            <span class="stats">Food :{food[foodCounter]}</span>
+          </div>
           <div>
             <button onClick={handlePlay} disabled={pooped || hungry}>
               Play
@@ -132,8 +140,6 @@ function App({ name }) {
               Clean
             </button>
           </div>
-          <div>Play: {playCounter}</div>
-          <div>Food :{foodCounter}</div>
         </div>
       )}
     </div>
