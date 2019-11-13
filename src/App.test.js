@@ -9,21 +9,6 @@ it("renders without crashing", () => {
   ReactDOM.render(<App />, div);
 });
 
-// describe("the poke name fetching", () => {
-//   test("poke name is on the page", () => {
-//     const { getByText, getByLabelText, getByTestId } = render(<App />);
-//     const inputNode = getByLabelText("Pick a pokemon");
-//     // console.log("inputNode: ", inputNode);
-//     fireEvent.change(inputNode, { target: { value: "pikachu" } });
-//     const buttonNode = getByTestId("search");
-//     // console.log("buttonNode: ", buttonNode);
-//     fireEvent.click(buttonNode);
-//     const headerText = getByText("pikachu");
-//     console.log("header:************************************ ", headerText);
-//     getByText("pikachu");
-//   });
-// });
-
 afterEach(cleanup);
 
 const mockResponse = {
