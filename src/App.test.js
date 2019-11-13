@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { fireEvent } from "@testing-library/dom";
+import { fireEvent, getAllByTestId } from "@testing-library/dom";
 import { render, cleanup, waitForElement } from "@testing-library/react";
 
 it("renders without crashing", () => {
@@ -26,7 +26,16 @@ it("renders without crashing", () => {
 
 afterEach(cleanup);
 
-const mockResponse = { name: "pikachu", id: "25" };
+const mockResponse = {
+  name: "pikachu",
+  id: "25",
+  sprites: {
+    back_default:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png",
+    front_default:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+  }
+};
 global.fetch = jest
   .fn()
   .mockImplementation(() =>
@@ -50,15 +59,10 @@ test("App component", () => {
   // Jest will wait for a promise if you return it from the test:
   // https://facebook.github.io/jest/docs/en/asynchronous.html#promises
   // Otherwise the test will end immediately and the async bit won't run
-  return waitForElement(() => {
-    debug();
-    return getByText("pikachu");
-  })
+  return waitForElement(() => getByTestId("pokename"))
     .then(output => {
-      console.log(output);
       expect(output.innerHTML).toEqual(mockResponse.name);
     })
-
     .catch(err => console.log(err));
 
   // wait until our element callback finds the output DOM node
