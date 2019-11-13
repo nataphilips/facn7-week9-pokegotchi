@@ -129,7 +129,7 @@ function App({ name }) {
           <div class="meters">
             <span class="stats">Food :{food[foodCounter]}</span>
           </div>
-          <div>
+          <div id="btnCont">
             <button onClick={handlePlay} disabled={pooped || hungry}>
               Play
             </button>
