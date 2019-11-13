@@ -1,23 +1,34 @@
 import React from "react";
 import { getPokemon } from "./utils";
 import pokeball from "./pokeball.png";
-import speech from "./speech.png";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPoo } from "@fortawesome/free-solid-svg-icons";
 
 function App({ name }) {
-  const [data, setData] = React.useState(null);
-  const [pokename, setPokeName] = React.useState("");
-  const [playCounter, setPlayCounter] = React.useState(0);
+  const [data, setData] = React.useState(() =>
+    JSON.parse(localStorage.getItem("data"))
+  );
+  const [pokename, setPokeName] = React.useState(() =>
+    localStorage.getItem("pokename")
+  );
+  const [playCounter, setPlayCounter] = React.useState(
+    JSON.parse(localStorage.getItem("counter")) || 0
+  );
   const [foodCounter, setFoodCounter] = React.useState(4);
   const [pooped, setPooped] = React.useState(false);
   const [hungry, setHungry] = React.useState(false);
   const [cleaning, setCleaning] = React.useState(false);
   const [msg, setMsg] = React.useState("");
+
   // const [lives, setLives] = React.useState(["♥", "♥♥", "♥♥♥", "♥♥♥♥", "♥♥♥♥♥"]);
 
   // console.log(lives);
+  React.useEffect(() => {
+    localStorage.setItem("pokename", pokename);
+    localStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("counter", playCounter);
+  }, [pokename, data, playCounter]);
 
   const handlePlay = () => {
     setPlayCounter(playCounter + 1);
