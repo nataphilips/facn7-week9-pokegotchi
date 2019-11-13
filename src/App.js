@@ -25,10 +25,10 @@ function App({ name }) {
 
   // console.log(lives);
   React.useEffect(() => {
-    localStorage.setItem("pokename", pokename);
+    // localStorage.setItem("pokename", pokename);
     localStorage.setItem("data", JSON.stringify(data));
     localStorage.setItem("counter", playCounter);
-  }, [pokename, data, playCounter]);
+  }, [data, playCounter]);
 
   const handlePlay = () => {
     setPlayCounter(playCounter + 1);
@@ -46,6 +46,9 @@ function App({ name }) {
     event.preventDefault();
     getPokemon(pokename).then(data => {
       setData(data);
+      setFoodCounter(4);
+      setPlayCounter(0);
+      setPooped(false);
     });
   };
   const handlePoops = () => {
