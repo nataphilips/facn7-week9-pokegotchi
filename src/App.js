@@ -15,6 +15,9 @@ function App({ name }) {
   const [hungry, setHungry] = React.useState(false);
   const [cleaning, setCleaning] = React.useState(false);
   const [msg, setMsg] = React.useState("");
+  // const [lives, setLives] = React.useState(["♥", "♥♥", "♥♥♥", "♥♥♥♥", "♥♥♥♥♥"]);
+
+  // console.log(lives);
 
   const handlePlay = () => {
     setPlayCounter(playCounter + 1);
@@ -67,13 +70,15 @@ function App({ name }) {
           value={pokename}
           onChange={event => setPokeName(event.target.value)}
         />
-        <button id="callPoke" onClick={handleSearch}>
+        <button id="callPoke" onClick={handleSearch} data-testid="search">
           <img id="callpoke" src={pokeball} />
         </button>
       </form>
       {data && data.id && (
         <div id="gameContainer">
-          <h2 id="pokeName">{data.name}</h2>
+          <h2 id="pokeName" data-testid="pokename">
+            {data.name}
+          </h2>
           <div className="pokeHouse">
             {cleaning && <div id="bubbles"></div>}
             <div id="message">

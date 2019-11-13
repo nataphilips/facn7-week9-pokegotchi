@@ -2,11 +2,8 @@ function getPokemon(name) {
   name = name.toLowerCase();
   return window
     .fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    .then(res => {
-      if (!res.ok) throw new Error("HTTP error");
-      return res;
-    })
-    .then(res => res.json());
+    .then(res => res.json())
+    .catch(err => console.log(err));
 }
 
 module.exports = { getPokemon };
