@@ -13,7 +13,16 @@
 form {
   display: flex;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
+  width: 40%;
+  justify-content: flex-end;
+}
+
+form button {
+  flex: 1;
+}
+form label {
+  flex: 3;
 }
 
 form label {
