@@ -1,7 +1,7 @@
 # Pokegotchi!
 ## A group project for Founders and Coders Nazareth, week 9
 
-Our project is hosted [Here](https://vigilant-spence-db03ac.netlify.com)
+Our project is hosted [Here](https://nataphilips-pokegotchi.herokuapp.com/)
 
 
 ![](https://media.giphy.com/media/8UGGp7rQvfhe63HrFq/giphy.gif)
